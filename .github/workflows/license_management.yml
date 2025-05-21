@@ -40,7 +40,7 @@ jobs:
           Write-Host "Users: $users"
 
           Write-Host "Getting team members from Github API"
-          $team_members = gh api orgs/${{ github.repository_owner }}/teams/copilot-licenced-users/members | ConvertFrom-Json | ForEach-Object { $_.login }
+          $team_members = gh api --paginate orgs/${{ github.repository_owner }}/teams/copilot-licenced-users/members | ConvertFrom-Json | ForEach-Object { $_.login }
           Write-Host "Team members: $team_members"
 
           # Add missing users to the team
